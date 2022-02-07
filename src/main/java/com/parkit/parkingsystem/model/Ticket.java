@@ -27,7 +27,7 @@ public class Ticket {
         this.parkingSpot = parkingSpot;
     }
 
-    public String getVehicleRegNumber() {
+public String getVehicleRegNumber() {
         return vehicleRegNumber;
     }
 

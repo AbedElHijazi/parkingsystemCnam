@@ -86,4 +86,25 @@ public class TicketDAO {
         }
         return false;
     }
+    
+     public int GetTicketsCount(String PlateNumber) {
+        int count=0;
+        Connection con = null;
+        try {
+            con = dataBaseConfig.getConnection();         
+            String query = "select count(*) from ticket where vehicle_reg_number='"+ PlateNumber.toString() + "'";
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+            count = rs.getInt("count(*)");
+            }
+            return count;
+        }
+    catch (Exception ex){
+            logger.error("Error saving ticket info",ex);
+        }finally {
+            dataBaseConfig.closeConnection(con);
+        }
+        return 0;
+    }
 }
